@@ -49,26 +49,51 @@ Two fixes worth trying:
 1. Handle the empty-result case in code, returning a fixed message to the user without a second model call.
 2. Add an explicit instruction that when a tool returns no data, the agent must say so and stop.
 
-## Running it
+## Running the Project
 
-Developed against a self-hosted Ollama instance running on a university GPU server, so the project uses no paid API services. Any Ollama host serving `llama3.2` works. Set the endpoint at the top of the notebook:
+This project was developed and tested locally using Python and Jupyter Notebook, with LLaMA 3.2 accessed through an Ollama service provided by the University of North Carolina Wilmington (UNCW).
 
-```python
-OLLAMA_BASE_URL = "http://localhost:11434"   # or your own Ollama host
-OLLAMA_MODEL    = "llama3.2"
-```
+The university's private server endpoint is not included in this repository for security reasons.
+
+### Requirements
+
+- Python 3
+- Jupyter Notebook
+- An accessible Ollama instance serving LLaMA 3.2
+
+### Setup
+
+**1. Install the required Python packages:**
 
 ```bash
-pip install requests duckduckgo-search gradio
+pip install requests duckduckgo-search gradio jupyter
+```
+
+**2. Set up Ollama:**
+
+Install Ollama on your own computer and download the model:
+
+```bash
+ollama pull llama3.2
+```
+
+Ensure the Ollama server is running.
+
+**3. Configure the notebook:**
+
+Set the Ollama endpoint and model name:
+
+```python
+OLLAMA_BASE_URL = "http://localhost:11434"
+OLLAMA_MODEL = "llama3.2"
+```
+
+The localhost address refers to your own computer, not UNCW's server.
+
+**4. Run the notebook:**
+
+```bash
 jupyter notebook health_wellness_final.ipynb
 ```
 
 Run the cells in order. The Gradio interface launches from the final cell.
-
-## Stack
-
-Python · LLaMA 3.2 · Ollama · Gradio · OpenFDA API · OpenStreetMap (Nominatim, Overpass) · DuckDuckGo Search
-
----
-
-Informational project only. Not medical advice.
